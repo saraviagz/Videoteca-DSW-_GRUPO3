@@ -1,0 +1,127 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión - Sistema de Reserva de Computadoras</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --text-color: #333;
+            --bg-color: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .left-column {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .right-column {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        }
+
+        .input-group-text {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .form-text {
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container main-container">
+        <div class="row g-0 shadow-lg">
+            <div class="col-md-6 left-column d-flex flex-column justify-content-center">
+                <h1 class="mb-4">Sistema de Reserva de Computadoras</h1>
+                <p>Bienvenido a nuestro innovador sistema de reserva de computadoras para la FISI. Accede a tu cuenta para gestionar tus reservas de forma rápida y sencilla.</p>
+            </div>
+            <div class="col-md-6 right-column">
+                <div class="login-form">
+                    <h2 class="text-center mb-4">Iniciar Sesión</h2>
+                    <form asp-controller="Home" asp-action="Login" method="post">
+                        <div class="mb-3">
+                            <label for="correo" class="form-label">Correo electrónico</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input id="correo" class="form-control" type="email" placeholder="nombre@unmsm.com" required name="correo" />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <input id="password" class="form-control" type="password" placeholder="Contraseña" required name="password" />
+                            </div>
+                            <div class="form-text">No compartas tu contraseña con nadie.</div>
+                        </div>
+                      
+                        <div class="d-grid gap-2 mb-3">
+                            <button class="btn btn-primary btn-lg" type="submit">
+                                <i class="fas fa-sign-in-alt me-2"></i>Iniciar Sesión
+                            </button>
+                        </div>
+                        @if (ViewData["Mensaje"] != null)
+                        {
+                                <div class="alert alert-danger" role="alert">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>@ViewData["Mensaje"]
+                                </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
