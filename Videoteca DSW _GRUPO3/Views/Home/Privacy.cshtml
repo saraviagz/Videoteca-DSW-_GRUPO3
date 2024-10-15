@@ -1,6 +1,118 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes - Sistema de Reserva de Computadoras</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
 
-<p>Use this page to detail your site's privacy policy.</p>
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #3498db;
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .faq {
+            margin-bottom: 20px;
+        }
+
+        .faq h3 {
+            font-size: 24px;
+            color: #2c3e50;
+            cursor: pointer;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0;
+            transition: background-color 0.3s;
+        }
+
+        .faq h3:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .faq i {
+            transition: transform 0.3s;
+        }
+
+        .faq p {
+            padding: 0 15px;
+            display: none;
+            margin: 10px 0 0 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .faq.active p {
+            display: block;
+        }
+
+        .faq.active i {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Preguntas Frecuentes</h1>
+
+        <div class="faq">
+            <h3>¿Cómo puedo reservar una computadora? <i class="fas fa-chevron-down"></i></h3>
+            <p>Para reservar una computadora, inicia sesión en tu cuenta, dirígete a la sección de "Reservas" y selecciona la computadora y el horario que desees.</p>
+        </div>
+
+        <div class="faq">
+            <h3>¿Qué hago si olvido mi contraseña? <i class="fas fa-chevron-down"></i></h3>
+            <p>Puedes restablecer tu contraseña haciendo clic en el enlace "Olvidé mi contraseña" en la página de inicio de sesión. Sigue las instrucciones enviadas a tu correo electrónico.</p>
+        </div>
+
+        <div class="faq">
+            <h3>¿Cuánto tiempo puedo reservar una computadora? <i class="fas fa-chevron-down"></i></h3>
+            <p>El tiempo máximo de reserva es de 2 horas consecutivas. Si necesitas más tiempo, deberás hacer una nueva reserva tras finalizar tu sesión actual.</p>
+        </div>
+
+        <div class="faq">
+            <h3>¿Qué sucede si no uso mi reserva? <i class="fas fa-chevron-down"></i></h3>
+            <p>Si no haces uso de tu reserva en los primeros 15 minutos, se cancelará automáticamente y la computadora quedará disponible para otros usuarios.</p>
+        </div>
+
+        <div class="faq">
+            <h3>¿Puedo cancelar una reserva? <i class="fas fa-chevron-down"></i></h3>
+            <p>Sí, puedes cancelar tu reserva desde tu perfil en la sección de "Mis Reservas". Recuerda hacerlo al menos 30 minutos antes del inicio de la sesión.</p>
+        </div>
+    </div>
+
+    <script>
+        // Lógica para abrir y cerrar las preguntas
+        const faqs = document.querySelectorAll('.faq');
+
+        faqs.forEach(faq => {
+            faq.addEventListener('click', () => {
+                faq.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        .panel {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #2c3e50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h2>@TempData["Nombre"]</h2>
+        <p>Estudiante</p>
+        <p>@TempData["Correo"]</p>
+        <button class="button">Cambiar contraseña</button>
+        <div></div>
+    </div>
+
+    <div class="panel">
+        <h2>Reserva actual</h2>
+        <p>Reserva de Equipo 801</p>
+        <p>Iniciado: 2 p.m. Vence: 4 p.m.</p>
+        <p>Faltan: 30 min</p>
+        <div></div>
+    </div>
+
+    <div>
+        <button class="button">Perfil</button>
+        <button class="button">Reservar</button>
+        <button class="button">Historial</button>
+        <button class="button">Salir</button>
+    </div>
+</body>
+</html>
