@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard</title>
+    <title>Dashboard del Administrador</title>
     <style>
         .panel {
             border: 1px solid #ccc;
@@ -21,6 +21,10 @@
             margin: 4px 2px;
             cursor: pointer;
         }
+
+        .button:hover {
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -28,9 +32,9 @@
         <h2>@TempData["Nombre"]</h2>
         <p>Administrador</p>
         <p>@TempData["Correo"]</p>
-        <button class="button">Cambiar contraseña</button>
-        <div></div>
-    </div>
 
+        <a class="button" asp-controller="Equipos" asp-action="ListarEquipo">Gestionar Equipos</a>
+        <a class="button" >Cambiar contraseña</a>
+    </div>
 </body>
 </html>
