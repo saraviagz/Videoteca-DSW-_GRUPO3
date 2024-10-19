@@ -14,14 +14,14 @@ namespace Videoteca_DSW__GRUPO3.Controllers
             _context = context;
         }
 
-        // Muestra la página de inicio de sesión
+        // Muestra la pï¿½gina de inicio de sesiï¿½n
         [HttpGet]
         public IActionResult Login()
         {
-            return View(); // Asegúrate de tener Login.cshtml
+            return View(); // Asegï¿½rate de tener Login.cshtml
         }
 
-        // Lógica de autenticación cuando el usuario intenta iniciar sesión
+        // Lï¿½gica de autenticaciï¿½n cuando el usuario intenta iniciar sesiï¿½n
         [HttpPost]
         public IActionResult Login(string correo, string password)
         {
@@ -35,7 +35,7 @@ namespace Videoteca_DSW__GRUPO3.Controllers
 
             if (administrador != null)
             {
-                // Si es administrador, guarda sus datos y redirige al panel de administración
+                // Si es administrador, guarda sus datos y redirige al panel de administraciï¿½n
                 TempData["Nombre"] = administrador.nombre;
                 TempData["Correo"] = administrador.correo;
                 return RedirectToAction("AdminDashboard");
@@ -50,12 +50,12 @@ namespace Videoteca_DSW__GRUPO3.Controllers
             else
             {
                 // Si las credenciales son incorrectas, muestra un mensaje de error
-                ViewData["Mensaje"] = "Correo o contraseña incorrectos.";
+                ViewData["Mensaje"] = "Correo o contraseÃ±a incorrectos.";
                 return View(); // Retorna la misma vista de Login con el mensaje de error
             }
         }
 
-        // Panel de administración
+        // Panel de administraciï¿½n
         public IActionResult AdminDashboard()
         {
             if (TempData["Nombre"] == null || TempData["Correo"] == null)
@@ -86,12 +86,12 @@ namespace Videoteca_DSW__GRUPO3.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        // Página de inicio
+        // Pï¿½gina de inicio
         public IActionResult Index()
         {
-            return View(); // Vista principal de la aplicación
+            return View(); // Vista principal de la aplicaciï¿½n
         }
-        // Página de Privacy
+        // Pï¿½gina de Privacy
         public IActionResult Privacy()
         {
             return View();
