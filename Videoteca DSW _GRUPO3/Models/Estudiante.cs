@@ -11,5 +11,6 @@ namespace Videoteca_DSW__GRUPO3.Models
         public required string nombre { get; set; }
         public required string correo { get; set; }
         public required string contrasenia { get; set; }
+        public required string estado { get; set; }
     }
 }
