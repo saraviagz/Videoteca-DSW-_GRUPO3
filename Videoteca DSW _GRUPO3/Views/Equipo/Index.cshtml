@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<Videoteca_DSW__GRUPO3.Models.Equipo>
 
+@{
+    ViewData["Title"] = "Listado de Equipos";
+}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,7 +21,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             background-color: #fff;
             padding: 20px;
@@ -99,6 +103,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h2>Gestión de Equipos</h2>
@@ -106,10 +111,14 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <!--
                     <th>Pantalla</th>
                     <th>CPU</th>
                     <th>Teclado</th>
                     <th>Mouse</th>
+                    -->
+                    <th>Laboratorio</th>
+                    <th>CodigoLabo</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
@@ -119,22 +128,25 @@
                 {
                     <tr>
                         <td>@equipo.id_equipo</td>
+                        <!--
                         <td>@equipo.codigo_pantalla</td>
                         <td>@equipo.codigo_cpu</td>
                         <td>@equipo.codigo_teclado</td>
-                        <td>@equipo.codigo_mouse</td>
+                        <td>@equipo.codigo_mouse</td> -->
+                        <td>@equipo.num_labo</td>
+                        <td>@equipo.codigo_en_labo</td>
                         <td>@equipo.estado</td>
                         <td class="actions">
-                            <a href="/Equipos/Details/@equipo.id_equipo" class="btn btn-secondary">Ver</a>
-                            <a href="/Equipos/Edit/@equipo.id_equipo" class="btn btn-primary">Editar</a>
-                            <a href="/Equipos/Delete/@equipo.id_equipo" class="btn btn-danger">Eliminar</a>
+                            <a href="/Equipo/Details/@equipo.id_equipo" class="btn btn-secondary">Ver</a>
+                            <a href="/Equipo/Edit/@equipo.id_equipo" class="btn btn-primary">Editar</a>
+                            <a href="/Equipo/Delete/@equipo.id_equipo" class="btn btn-danger">Eliminar</a>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
         <div class="add-btn">
-            <a href="/Equipos/Create" class="btn btn-primary">Agregar Nuevo Equipo</a>
+            <a href="/Equipo/Create" class="btn btn-primary">Agregar Nuevo Equipo</a>
         </div>
     </div>
 </body>

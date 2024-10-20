@@ -9,15 +9,13 @@ namespace Videoteca_DSW__GRUPO3.Models
         [Key]
         public int id_equipo { get; set; }
 
-        // Relación con la tabla Inventario (id_inventario es clave foránea)
         [ForeignKey("Inventario")]
-        public int id_inventario { get; set; }
-        public Inventario Inventario { get; set; }
+        public int? id_inventario { get; set; }
+        public virtual Inventario Inventario { get; set; }
 
-        // Relación con la tabla Administrador (id_admin es clave foránea)
         [ForeignKey("Administrador")]
-        public int id_admin { get; set; }
-        public Administrador Administrador { get; set; }
+        public int? id_admin { get; set; }
+        public virtual Administrador Administrador { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -42,6 +40,6 @@ namespace Videoteca_DSW__GRUPO3.Models
 
         [Required]
         [StringLength(20)]
-        public string estado { get; set; } = "libre";  // Valor por defecto "libre"
+        public string estado { get; set; } = "libre";
     }
 }

@@ -1,0 +1,141 @@
+﻿@model Videoteca_DSW__GRUPO3.Models.Equipo
+
+@{
+    ViewData["Title"] = "Eliminar Equipo";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Equipo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h2, h3 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        h2 {
+            font-size: 24px;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .details {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .details dt {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+        .details dd {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        .btn-danger {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background-color 0.3s, transform 0.2s;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn-danger:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+        .cancel-link {
+            display: inline-block;
+            margin-left: 10px;
+            color: #7f8c8d;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .cancel-link:hover {
+            color: #34495e;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Eliminar Equipo</h2>
+        <h3>¿Está seguro de que desea eliminar este equipo?</h3>
+        <div class="details">
+            <dl>
+                <dt>Inventario:</dt>
+                <dd>@Model.id_inventario</dd>
+
+                <dt>Administrador:</dt>
+                <dd>@Model.id_admin</dd>
+
+                <dt>ID:</dt>
+                <dd>@Model.id_equipo</dd>
+
+                <dt>Código de Pantalla:</dt>
+                <dd>@Model.codigo_pantalla</dd>
+
+                <dt>Código de CPU:</dt>
+                <dd>@Model.codigo_cpu</dd>
+
+                <dt>Código de Teclado:</dt>
+                <dd>@Model.codigo_teclado</dd>
+
+                <dt>Código de Mouse:</dt>
+                <dd>@Model.codigo_mouse</dd>
+
+                <dt>Número de Laboratorio:</dt>
+                <dd>@Model.num_labo</dd>
+
+                <dt>Código en Laboratorio:</dt>
+                <dd>@Model.codigo_en_labo</dd>
+
+                <dt>Estado:</dt>
+                <dd>@Model.estado</dd>
+            </dl>
+        </div>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="id_equipo" />
+            <div class="buttons">
+                <input type="submit" value="Eliminar" class="btn-danger" />
+                <a asp-action="Index" class="cancel-link">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

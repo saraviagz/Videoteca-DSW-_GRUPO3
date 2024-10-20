@@ -1,0 +1,168 @@
+﻿@model Videoteca_DSW__GRUPO3.Models.Equipo
+
+@{
+    ViewData["Title"] = "Añadir Equipo";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Nuevo Equipo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 24px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .control-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #3498db;
+        }
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .text-danger {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background-color 0.3s, transform 0.2s;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn-primary:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+        }
+        .cancel-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #7f8c8d;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .cancel-link:hover {
+            color: #34495e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Agregar Nuevo Equipo</h2>
+        <form asp-action="Create">
+
+            <div class="form-group">
+                <label asp-for="id_inventario" class="control-label">Inventario</label>
+                <select asp-for="id_inventario" class="form-control" asp-items="ViewBag.id_inventario" required></select>
+                <span asp-validation-for="id_inventario" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="id_admin" class="control-label">Administrador</label>
+                <select asp-for="id_admin" class="form-control" asp-items="ViewBag.id_admin" required></select>
+                <span asp-validation-for="id_admin" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="codigo_pantalla" class="control-label">Código de Pantalla</label>
+                <input asp-for="codigo_pantalla" class="form-control" />
+                <span asp-validation-for="codigo_pantalla" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="codigo_cpu" class="control-label">Código de CPU</label>
+                <input asp-for="codigo_cpu" class="form-control" />
+                <span asp-validation-for="codigo_cpu" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="codigo_teclado" class="control-label">Código de Teclado</label>
+                <input asp-for="codigo_teclado" class="form-control" />
+                <span asp-validation-for="codigo_teclado" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="codigo_mouse" class="control-label">Código de Mouse</label>
+                <input asp-for="codigo_mouse" class="form-control" />
+                <span asp-validation-for="codigo_mouse" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="num_labo" class="control-label">Número de Laboratorio</label>
+                <input asp-for="num_labo" class="form-control" />
+                <span asp-validation-for="num_labo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="codigo_en_labo" class="control-label">Código en Laboratorio</label>
+                <input asp-for="codigo_en_labo" class="form-control" />
+                <span asp-validation-for="codigo_en_labo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="estado">Estado</label>
+                <select asp-for="estado" class="form-control", required>
+                    <option value="libre">Libre</option>
+                    <option value="ocupado">Ocupado</option>
+                    <option value="mantenimiento">Mantenimiento</option>
+                </select>
+                <span asp-validation-for="estado" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Agregar Equipo" class="btn-primary" />
+            </div>
+
+            <a asp-action="Index" class="cancel-link">Cancelar</a>
+        </form>
+    </div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>

@@ -8,8 +8,8 @@ namespace Videoteca_DSW__GRUPO3.Models
     {
         [Key]
         public int id_inventario { get; set; }
-        public required string num_labo { get; set; }
+        public int num_labo { get; set; }
         [Range(0, int.MaxValue)]
-        public required string num_equipos { get; set; }
+        public int num_equipos { get; set; }
     }
 }
