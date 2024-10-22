@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Videoteca_DSW__GRUPO3.Models
 {
-    [Table("TB_estudiante")]  // Asegúrate de que este nombre coincida con el de la tabla en la base de datos
+    [Table("Estudiante")]  // Asegúrate de que este nombre coincida con el de la tabla en la base de datos
     public class Estudiante
     {
         [Key]
