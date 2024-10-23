@@ -41,5 +41,7 @@ namespace Videoteca_DSW__GRUPO3.Models
         [Required]
         [StringLength(20)]
         public string estado { get; set; } = "libre";
+
+        public string nombre_equipo { get; set; }
     }
 }

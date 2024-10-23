@@ -21,6 +21,21 @@ namespace Videoteca_DSW__GRUPO3.Controllers
             return View(await appDbContext.ToListAsync());
         }
 
+        public IActionResult Search(string type, string term)
+        {
+            var equipos = _context.Equipos.AsQueryable();
+
+            if (!string.IsNullOrEmpty(term))
+            {
+                if (type == "nombre")
+                {
+                    equipos = equipos.Where(e => e.nombre_equipo.Contains(term));
+                }
+            }
+
+            return View("Index", equipos.ToList());
+        }
+
         // GET: Equipo/Details/5
         public async Task<IActionResult> Details(int? id)
         {
