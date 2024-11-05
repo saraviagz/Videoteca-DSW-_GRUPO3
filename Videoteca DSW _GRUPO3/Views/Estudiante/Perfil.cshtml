@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Gestión de Estudiantes</title>
+  <style>
+    /* Styles for the student list container */
+    .student-list-container {
+      display: flex;
+      flex-direction: column;
+      width: 40%;
+      margin: 0 auto; /* Center the container horizontally */
+      padding: 10px;
+      border: 1px solid #ccc; /* Add a border for better distinction */
+      border-radius: 5px;
+    }
+
+    /* Styles for the header section */
+    .student-list-header {
+      display: flex;
+      justify-content: space-between; /* Align items horizontally */
+      align-items: center; /* Align items vertically */
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ccc; /* Add a separator line */
+    }
+
+    /* Styles for the student list */
+    .student-list {
+      list-style: none;
+      padding: 0;
+      margin: 0; /* Remove default margins */
+    }
+
+    /* Styles for each student item */
+    .student-item {
+      display: flex; /* Make items display inline */
+      justify-content: space-between; /* Distribute content horizontally */
+      align-items: center; /* Align content vertically */
+      padding: 10px;
+      margin-bottom: 5px;
+      border-radius: 5px;
+      background-color: #f2f2f2;
+    }
+
+    /* Styles for the student information */
+    .student-info {
+      flex-grow: 1; /* Allow student info to occupy most of the space */
+    }
+
+    /* Styles for the student actions */
+    .student-actions {
+      display: flex; /* Group buttons horizontally */
+    }
+
+    /* Styles for the buttons */
+    .student-actions button {
+      margin-left: 5px; /* Add spacing between buttons */
+      padding: 5px 10px; /* Adjust button padding */
+      border: none;
+      border-radius: 3px;
+      cursor: pointer; /* Indicate clickable buttons */
+    }
+  </style>
+</head>
+<body>
+  <div class="student-list-container">
+    <div class="student-list-header">
+      <h1>Gestión de Estudiantes</h1>
+      <div>
+        <input type="text" placeholder="Buscar estudiante">
+        <button>Buscar</button>
+      </div>
+    </div>
+
+    <ul class="student-list">
+      <li class="student-item">
+        <div class="student-info">
+          <span>Luis Castillo</span>
+          <span>luis.castillo1@unmsm.edu.pe</span>
+        </div>
+        <div class="student-actions">
+          <button>Editar</button>
+          <button>Eliminar</button>
+        </div>
+      </li>
+      </ul>
+  </div>
+</body>
+</html>

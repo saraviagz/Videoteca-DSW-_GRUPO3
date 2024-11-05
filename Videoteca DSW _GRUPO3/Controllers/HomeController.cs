@@ -1,9 +1,12 @@
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Videoteca_DSW__GRUPO3.Models;
 
 namespace Videoteca_DSW__GRUPO3.Controllers
+
+
 {
     public class HomeController : Controller
     {
@@ -16,12 +19,16 @@ namespace Videoteca_DSW__GRUPO3.Controllers
 
         // Muestra la página de inicio de sesión
         [HttpGet]
-        public IActionResult Login()
+        
+          public IActionResult Login()
         {
             return View(); // Asegúrate de tener Login.cshtml
         }
 
+
         // Lógica de autenticación cuando el usuario intenta iniciar sesión
+   
+      
         [HttpPost]
         public IActionResult Login(string correo, string password)
         {
@@ -38,14 +45,15 @@ namespace Videoteca_DSW__GRUPO3.Controllers
                 // Si es administrador, guarda sus datos y redirige al panel de administración
                 TempData["Nombre"] = administrador.nombre;
                 TempData["Correo"] = administrador.correo;
-                return RedirectToAction("AdminDashboard");
+                return View("~/Views/Administrador/AdminDashboard.cshtml");
+
             }
             else if (estudiante != null)
             {
                 // Si es estudiante, guarda sus datos y redirige al panel de estudiantes
                 TempData["Nombre"] = estudiante.nombre;
                 TempData["Correo"] = estudiante.correo;
-                return RedirectToAction("StudentDashboard");
+                return View("~/Views/Estudiante/StudentDashboard.cshtml");
             }
             else
             {
@@ -53,18 +61,17 @@ namespace Videoteca_DSW__GRUPO3.Controllers
                 ViewData["Mensaje"] = "Correo o contraseña incorrectos.";
                 return View(); // Retorna la misma vista de Login con el mensaje de error
             }
+
+ 
+
         }
 
         // Panel de administración
-        public IActionResult AdminDashboard()
+        public IActionResult AdminDashboard(string option)
         {
-            if (TempData["Nombre"] == null || TempData["Correo"] == null)
-            {
-                // Redirige al login si no hay datos de administrador
-                return RedirectToAction("Login");
-            }
 
-            return View(); // Vista de AdminDashboard
+                    return View("~/Views/Administrador/Inventario.cshtml");
+             
         }
 
         // Panel de estudiantes
@@ -95,6 +102,38 @@ namespace Videoteca_DSW__GRUPO3.Controllers
         public IActionResult Privacy()
         {
             return View();
+
+        }
+
+        public IActionResult Perfil()
+        {
+            return View("~/Views/Administrador/Perfil.cshtml");
+            
+        }
+
+        public IActionResult Reportes()
+        {
+            return View("~/Views/Administrador/Reportes.cshtml");
+        }
+
+        public IActionResult GestionarUsuarios()
+        {
+            return View("~/Views/Administrador/GestionarUsuarios.cshtml");
+        }
+
+        public IActionResult Inventario()
+        {
+            return View("~/Views/Administrador/Inventario.cshtml");   
+        }
+
+        public IActionResult Salir()
+        {
+            TempData.Clear();
+            return RedirectToAction("Login");
         }
     }
+
+
 }
+
+

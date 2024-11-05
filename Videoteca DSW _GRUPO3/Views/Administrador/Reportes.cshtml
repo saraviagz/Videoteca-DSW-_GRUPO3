@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes de Equipos Informáticos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Reportes de Equipos Informáticos</h2>
+        <form class="form-inline">
+            <div class="form-group mr-3">
+                <label for="searchBy" class="mr-2">Búsqueda por</label>
+                <select id="searchBy" class="form-control">
+                    <option value="equipo">Equipo</option>
+                    <option value="codigo">Código</option>
+                    <option value="ubicacion">Ubicación</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="codigoEquipo" class="mr-2">Código de equipo</label>
+                <select id="codigoEquipo" class="form-control">
+                    <option value="801">801</option>
+                    <option value="802">802</option>
+                    <option value="803">803</option>
+                    <option value="804">804</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
