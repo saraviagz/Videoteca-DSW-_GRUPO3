@@ -12,10 +12,8 @@
             min-height: 100vh;
         }
 
-        .main-content {
-            flex: 1;
-            padding: 40px;
-            background-color: #f8f5f8; /* Fondo de la sección principal */
+        .main-container {
+            display: flex;
         }
 
         .sidebar {
@@ -27,61 +25,17 @@
             position: fixed;
         }
 
-            .sidebar .nav-item {
-                margin-bottom: 20px;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-
         .content-area {
             flex-grow: 1;
             padding: 20px;
-            margin-left: 250px; /* Igual al ancho del sidebar */
-
-        }
-
-        .panel {
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin-bottom: 20px;
-            background-color: white;
-            border-radius: 5px;
-        }
-
-        .button {
-            background-color: #2c3e50;
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .button-group {
-            padding: 20px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+            margin-left: 250px;
+            background-color: #f8f5f8;
         }
 
         .equipos-container {
-            width: 100%;
             max-width: 600px;
             margin: 0 auto;
         }
-
-            .equipos-container h2 {
-                font-size: 20px;
-                color: #333;
-                text-align: left;
-                margin-bottom: 20px;
-            }
 
         .equipo-item {
             display: flex;
@@ -91,6 +45,7 @@
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 10px;
+            cursor: pointer;
         }
 
             .equipo-item i {
@@ -105,17 +60,70 @@
             flex-direction: column;
         }
 
-            .equipo-info .nombre {
-                font-weight: bold;
-                font-size: 16px;
-                color: #333;
-            }
+        .modal-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
 
-            .equipo-info .ubicacion {
-                font-size: 14px;
-                color: #777;
-            }
+        .modal-content {
+            background-color: #c8f7c5;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
 
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .alert {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2000;
+            display: none;
+            width: 250px;
+        }
+
+        /* New styles for confirmation modal */
+        .confirmation-modal {
+            font-size: 16px;
+            background-color: #c8e6c9; /* Light green background */
+            color: #388e3c; /* Darker green text */
+        }
     </style>
 </head>
 <body>
@@ -123,87 +131,157 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <nav class="nav flex-column">
-                <div class="d-grid gap-2 mb-3">
-                    <button class="btn btn-primary btn-lg" onclick="navigateTo('Perfil')">
-                        <!-- VIEW -->
-                        <i class="fa-solid fa-user me-2"></i>Perfil                             <!-- NAME BUTTON -->
-                    </button>
-                </div>
-                <div class="d-grid gap-2 mb-3">
-                    <button class="btn btn-primary btn-lg" onclick="navigateTo('ReservaEquipo')">
-                        <!-- VIEW -->
-                        <i class="fa-solid fa-calendar-check me-2"></i>Reservar Equipo              <!-- NAME BUTTON -->
-                    </button>
-                </div>
-                <div class="d-grid gap-2 mb-3">
-                    <button class="btn btn-primary btn-lg" onclick="navigateTo('Historial')">
-                        <i class="fa-solid fa-clock-rotate-left me-2"></i>Historial
-                    </button>
-                </div>
-                <div class="d-grid gap-2 mb-3">
-                    <button class="btn btn-primary btn-lg" onclick="navigateTo('Salir')">
-                        <i class="fa-solid fa-door-open me-2"></i>Salir
-                    </button>
-                </div>
+                <button class="btn btn-primary btn-lg mb-3" onclick="navigateTo('Perfil')">
+                    <i class="fa-solid fa-user me-2"></i>Perfil
+                </button>
+                <button class="btn btn-primary btn-lg mb-3" onclick="navigateTo('ReservaEquipo')">
+                    <i class="fa-solid fa-calendar-check me-2"></i>Reservar Equipo
+                </button>
+                <button class="btn btn-primary btn-lg mb-3" onclick="navigateTo('Historial')">
+                    <i class="fa-solid fa-clock-rotate-left me-2"></i>Historial
+                </button>
+                <button class="btn btn-primary btn-lg mb-3" onclick="navigateTo('Salir')">
+                    <i class="fa-solid fa-door-open me-2"></i>Salir
+                </button>
             </nav>
         </div>
-        <script>
-            function navigateTo(view) {
-                // Redirige a la vista correspondiente en el controlador Estudiante
-                window.location.href = '/Estudiante/' + view;
-            }
-        </script>
 
         <!-- Content Area -->
-        <!-- Contenido principal -->
         <div class="content-area">
             <div class="equipos-container">
                 <h2>Equipos libres</h2>
-                <!-- Lista de equipos -->
-                <div id="equipos-grid">
-                    <!-- Los elementos se generarán aquí -->
+                <div id="equipos-grid"></div>
+            </div>
+        </div>
+
+        <!-- Modal for reservation -->
+        <div class="modal-background" id="modal-background">
+            <div class="modal-content">
+                <button class="close-button" onclick="closeModal()">&times;</button>
+                <h3 id="modal-title"></h3>
+                <div class="form-group">
+                    <label for="inicio">Inicio (9:00 - 17:00)</label>
+                    <input type="time" id="inicio" class="form-control" step="60" value="09:00">
+                </div>
+                <div class="form-group">
+                    <label for="duracion">Tiempo de préstamo (en minutos, máx. 120)</label>
+                    <input type="number" id="duracion" class="form-control">
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-success" onclick="guardarInformacion()">Aceptar</button>
+                    <button class="btn btn-danger" onclick="closeModal()">Cancelar</button>
                 </div>
             </div>
         </div>
 
-        <script>
-            // Simulación de datos de la base de datos en una matriz
-            const equipos = [
-                ["Equipo 601", "Laboratorio 6"],
-                ["Equipo 605", "Laboratorio 6"],
-                ["Equipo 601", "Laboratorio 6"],
-                ["Equipo 605", "Laboratorio 6"]
-            ];
-
-            // Función para renderizar la lista de equipos
-            function renderEquipos() {
-                const equiposGrid = document.getElementById('equipos-grid');
-                equipos.forEach(equipo => {
-                    const equipoItem = document.createElement('div');
-                    equipoItem.className = 'equipo-item';
-                    equipoItem.innerHTML = `
-                                    <i class="fas fa-desktop"></i>
-                                    <div class="equipo-info">
-                                                <span class="nombre">${equipo[0]}</span>
-                                                <span class="ubicacion">${equipo[1]}</span>
-                                            </div>
-                                        `;
-                    equiposGrid.appendChild(equipoItem);
-                });
-            }
-
-            // Llamada a la función para mostrar los equipos
-            renderEquipos();
-        </script>
-
-
-
-
+        <!-- Confirmation Modal -->
+        <div class="modal-background" id="confirmation-modal" style="display: none;">
+            <div class="modal-content confirmation-modal">
+                <button class="close-button" onclick="closeConfirmationModal()">&times;</button>
+                <h3 id="confirmation-message"></h3>
+                <div class="button-group">
+                    <button class="btn btn-success" onclick="closeConfirmationModal()">Aceptar</button>
+                </div>
+            </div>
         </div>
+
+        <!-- Alert Message -->
+        <div class="alert" id="alert-message"></div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
+    <script>
+        function navigateTo(view) {
+            window.location.href = '/Estudiante/' + view;
+        }
+
+        const equipos = [
+            ["Equipo 601", "Laboratorio 6"],
+            ["Equipo 605", "Laboratorio 6"],
+            ["Equipo 601", "Laboratorio 6"],
+            ["Equipo 605", "Laboratorio 6"]
+        ];
+
+        function renderEquipos() {
+            const equiposGrid = document.getElementById('equipos-grid');
+            equipos.forEach(equipo => {
+                const equipoItem = document.createElement('div');
+                equipoItem.className = 'equipo-item';
+                equipoItem.innerHTML = `
+                                    <i class="fas fa-desktop"></i>
+                                    <div class="equipo-info">
+                                        <span class="nombre">${equipo[0]}</span>
+                                        <span class="ubicacion">${equipo[1]}</span>
+                                    </div>
+                                `;
+                equipoItem.onclick = () => openModal(equipo[0]);
+                equiposGrid.appendChild(equipoItem);
+            });
+        }
+
+        function openModal(equipo) {
+            document.getElementById('modal-title').innerText = `Prestar el ${equipo}`;
+            document.getElementById('modal-background').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal-background').style.display = 'none';
+        }
+
+        function closeConfirmationModal() {
+            document.getElementById('confirmation-modal').style.display = 'none';
+        }
+
+        function showAlert(message) {
+            const alertMessage = document.getElementById('alert-message');
+            alertMessage.innerText = message;
+            alertMessage.style.display = 'block';
+            setTimeout(() => {
+                alertMessage.style.display = 'none';
+            }, 3000);
+        }
+
+        function guardarInformacion() {
+            const inicio = document.getElementById('inicio').value;
+            const duracion = parseInt(document.getElementById('duracion').value);
+
+            if (!inicio || isNaN(duracion)) {
+                showAlert("Por favor, complete todos los campos.");
+                return;
+            }
+
+            // Convertir la hora de inicio a un número de horas
+            let [hours, minutes] = inicio.split(':').map(Number);
+
+            // Validar que la hora de inicio esté entre 9:00 y 17:00
+            if (hours < 9 || (hours >= 17 && minutes > 0)) {
+                showAlert("La hora de inicio debe estar entre las 9:00 y las 17:00.");
+                return;
+            }
+
+            // Validar que la duración sea menor o igual a 120 minutos
+            if (duracion > 120) {
+                showAlert("La duración no puede exceder 120 minutos (2 horas).");
+                return;
+            }
+
+            // Si la hora es posterior a las 15:00, ajustar la duración máxima
+            if (hours >= 15) {
+                const maxDuration = (17 - hours) * 60 - minutes;
+                if (duracion > maxDuration) {
+                    showAlert(`La duración máxima para reservas después de las 15:00 es de ${maxDuration} minutos.`);
+                    return;
+                }
+            }
+
+            // Mostrar el mensaje de confirmación en el nuevo modal
+            document.getElementById('confirmation-message').innerText = `\RESERVA REALIZADA \n\n-Inicio ${inicio}, \n-Duración ${duracion} minutos`;
+            document.getElementById('confirmation-modal').style.display = 'flex';
+
+            // Cerrar el modal de reserva
+            closeModal();
+        }
+
+        renderEquipos();
+    </script>
 </body>
 </html>
