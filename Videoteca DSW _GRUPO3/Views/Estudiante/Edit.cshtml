@@ -1,0 +1,341 @@
+﻿@model Videoteca_DSW__GRUPO3.Models.Estudiante
+
+@{
+    ViewData["Title"] = "Editar Estudiante";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .edit-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .text-danger {
+            color: #e74c3c;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: #95a5a6;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+
+        /* Estilos para el mensaje de éxito */
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: none;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        /* Estilos para el modal de confirmación */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="edit-card">
+            <div class="header">
+                <h1>Editar Estudiante</h1>
+                <div class="subtitle">Modifica la información del estudiante</div>
+            </div>
+
+            <div id="successAlert" class="alert alert-success" role="alert">
+                Los cambios se han guardado correctamente.
+            </div>
+
+            <div id="errorAlert" class="alert alert-danger" role="alert">
+                Por favor, complete todos los campos requeridos.
+            </div>
+
+            <form id="editForm" asp-action="Edit" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="id_estudiante" />
+                <input type="hidden" asp-for="estado" />
+
+                <div class="form-group">
+                    <label asp-for="nombre" class="form-label">Nombre</label>
+                    <input asp-for="nombre" class="form-control" placeholder="Ingrese el nombre completo" required />
+                    <span asp-validation-for="nombre" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="correo" class="form-label">Correo Electrónico</label>
+                    <input asp-for="correo" class="form-control" type="email" placeholder="ejemplo@dominio.com" required />
+                    <span asp-validation-for="correo" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="contrasenia" class="form-label">Contraseña</label>
+                    <input asp-for="contrasenia" class="form-control" type="password" placeholder="Ingrese la contraseña" required />
+                    <span asp-validation-for="contrasenia" class="text-danger"></span>
+                </div>
+
+                <div class="buttons-container">
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        Volver
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Guardar Cambios
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación de salida -->
+    <div id="exitModal" class="modal">
+        <div class="modal-content">
+            <h2 style="margin-bottom: 20px; color: #2c3e50;">¿Estás seguro?</h2>
+            <p style="color: #7f8c8d; margin-bottom: 20px;">Hay cambios sin guardar. ¿Deseas salir sin guardar los cambios?</p>
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" onclick="hideExitModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="confirmExit()">Salir</button>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+        <script>
+            let formChanged = false;
+            let returnUrl = '@Url.Action("Index")';
+
+            // Detectar cambios en el formulario
+            document.getElementById('editForm').addEventListener('input', function() {
+                formChanged = true;
+                document.getElementById('errorAlert').style.display = 'none';
+            });
+
+            function validateForm() {
+                const nombre = document.querySelector('input[name="nombre"]').value.trim();
+                const correo = document.querySelector('input[name="correo"]').value.trim();
+                const contrasenia = document.querySelector('input[name="contrasenia"]').value.trim();
+
+                if (!nombre || !correo || !contrasenia) {
+                    document.getElementById('errorAlert').style.display = 'block';
+                    return false;
+                }
+                return true;
+            }
+
+            // Mostrar modal al intentar salir con cambios sin guardar
+            function showExitModal() {
+                if (formChanged) {
+                    document.getElementById('exitModal').style.display = 'flex';
+                    return false;
+                }
+                return true;
+            }
+
+            function hideExitModal() {
+                document.getElementById('exitModal').style.display = 'none';
+            }
+
+            function confirmExit() {
+                formChanged = false;
+                window.location.href = returnUrl;
+            }
+
+            // Interceptar el botón de volver
+            document.querySelector('.btn-secondary').addEventListener('click', function(e) {
+                e.preventDefault();
+                if (formChanged) {
+                    showExitModal();
+                } else {
+                    window.location.href = returnUrl;
+                }
+            });
+
+            // Manejar el envío del formulario
+            document.getElementById('editForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Validar el formulario antes de enviarlo
+                if (!validateForm()) {
+                    return;
+                }
+
+                const formData = new FormData(this);
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('successAlert').style.display = 'block';
+                            document.getElementById('errorAlert').style.display = 'none';
+                        formChanged = false;
+                        setTimeout(() => {
+                            window.location.href = returnUrl;
+                        }, 1500);
+                    } else {
+                        throw new Error('Error al guardar los cambios');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Ocurrió un error al guardar los cambios. Por favor, intente nuevamente.');
+                });
+            });
+        </script>
+    }
+</body>
+</html>

@@ -24,15 +24,15 @@
 
         .container {
             display: flex;
-            width: 100vw; /* Asegura que cubra el ancho total de la ventana */
+            width: 100vw;
         }
 
         .sidebar {
-            flex: 0 0 250px; /* Barra lateral de 250px de ancho */
+            flex: 0 0 250px;
             background-color: #2c3e50;
             color: #ecf0f1;
-            height: 80%; /* Asegura que cubra toda la altura */
-            position: fixed; /* Fija la barra lateral al lado izquierdo */
+            height: 80%;
+            position: fixed;
             left: 0;
             top: 56px;
             padding: 20px 0;
@@ -59,7 +59,7 @@
             }
 
         .main-content {
-            margin-left: 200px; /* Deja espacio para la barra lateral */
+            margin-left: 200px;
             flex-grow: 1;
             padding: 30px;
             background-color: #f4f4f4;
@@ -177,7 +177,7 @@
                 <i class="fas fa-chart-bar"></i>
                 Reportes
             </a>
-            <a href="#" class="sidebar-item">
+            <a asp-controller="Estudiante" asp-action="Index" class="sidebar-item">
                 <i class="fas fa-users"></i>
                 Gestionar Usuarios
             </a>
@@ -202,9 +202,9 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="profile-info">
-                        <h2>@TempData["Nombre"]</h2>
+                        <h2>@ViewData["Nombre"]</h2>
                         <p>Administrador</p>
-                        <p>@TempData["Correo"]</p>
+                        <p>@ViewData["Correo"]</p>
                     </div>
                 </div>
                 <button class="change-password">Cambiar contraseña</button>

@@ -2,6 +2,8 @@ using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Videoteca_DSW__GRUPO3.Models;
+using Microsoft.AspNetCore.Http;
+
 
 namespace Videoteca_DSW__GRUPO3.Controllers
 {
@@ -33,13 +35,21 @@ namespace Videoteca_DSW__GRUPO3.Controllers
             var estudiante = _context.Estudiantes
                 .FirstOrDefault(e => e.correo == correo && e.contrasenia == password);
 
-            if (administrador != null)
+            /*if (administrador != null)
             {
                 // Si es administrador, guarda sus datos y redirige al panel de administraci�n
                 TempData["Nombre"] = administrador.nombre;
                 TempData["Correo"] = administrador.correo;
                 return RedirectToAction("AdminDashboard");
+            }*/
+            if (administrador != null)
+            {
+                HttpContext.Session.SetString("Nombre", administrador.nombre);
+                HttpContext.Session.SetString("Correo", administrador.correo);
+                return RedirectToAction("AdminDashboard");
             }
+            
+
             else if (estudiante != null)
             {
                 // Si es estudiante, guarda sus datos y redirige al panel de estudiantes
@@ -56,7 +66,7 @@ namespace Videoteca_DSW__GRUPO3.Controllers
         }
 
         // Panel de administraci�n
-        public IActionResult AdminDashboard()
+        /*public IActionResult AdminDashboard()
         {
             if (TempData["Nombre"] == null || TempData["Correo"] == null)
             {
@@ -65,6 +75,25 @@ namespace Videoteca_DSW__GRUPO3.Controllers
             }
 
             return View(); // Vista de AdminDashboard
+        }*/
+        
+        public IActionResult AdminDashboard()
+        {
+            // Recuperar los datos desde la sesión
+            var nombre = HttpContext.Session.GetString("Nombre");
+            var correo = HttpContext.Session.GetString("Correo");
+
+            // Validar que los datos existen
+            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(correo))
+            {
+                return RedirectToAction("Login");
+            }
+
+            // Pasar los datos a la vista usando ViewData
+            ViewData["Nombre"] = nombre;
+            ViewData["Correo"] = correo;
+
+            return View(); // Retornar la vista del panel de administrador
         }
 
         // Panel de estudiantes
